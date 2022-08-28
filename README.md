@@ -9,7 +9,7 @@ To benchmark scylla db in GKE private cluster.
 
 ## Steps
 
-### To build docker image with YCSB client to be able to use it in benchmarking in k8s cluster.
+### Build docker image with YCSB client to be able to use it in benchmarking in k8s cluster.
 
 ```bash
 export $DOCKER_USER_NAME=<docker user name>
@@ -23,7 +23,7 @@ docker push $DOCKER_USER_NAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
 ```
 
 
-### To init session scoped env variables
+### Init session scoped env variables
 
 ```bash
 GCP_USER=$( gcloud config list account --format "value(core.account)" )
@@ -34,7 +34,7 @@ CLUSTER_NAME=scylla-demo
 CLUSTER_VERSION=$( gcloud container get-server-config --zone ${GCP_ZONE} --format "value(validMasterVersions[0])" )
 ```
 
-### To setup GKE cluster
+### Setup GKE cluster
 
 ```bash
 gcloud container \
@@ -125,6 +125,28 @@ gcloud compute firewall-rules create ${TARGET_TAG}-master-manuall \
 
 ### Run scylla cluster
 ```bash
-sed "s/<gcp_region>/${GCP_REGION}/g;s/<gcp_zone>/${GCP_ZONE}/g" cluster.yaml | kubectl apply -f -
+sed "s/<gcp_region>/${GCP_REGION}/g;s/<gcp_zone>/${GCP_ZONE}/g" ./scylla/gke/cluster.yaml | kubectl apply -f -
 ```
 
+### Create PV to keep benchmark results from YCSB jobs.
+```bash
+```
+
+### Run YCSB clients for benchmarking
+```bash
+gcloud container \
+node-pools create "ycsb-benchmark-pool" \
+--cluster "${CLUSTER_NAME}" \
+--node-version "${CLUSTER_VERSION}" \
+--machine-type "n1-standard-4" \
+--num-nodes "2" \
+--disk-type "pd-ssd" \
+--disk-size "20" \
+--node-taints role=ycsb-benchmark:NoSchedule \
+--image-type "UBUNTU_CONTAINERD" \
+--no-enable-autoupgrade \
+--no-enable-autorepair
+
+export YCSB_IMAGE=$DOCKER_USER_NAME/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+sed "s/<ycsb_image>/${YCSB_IMAGE}/g" ./scylla/benchmark/clinets.yaml | kubectl apply -f -
+```
