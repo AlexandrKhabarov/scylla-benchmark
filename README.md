@@ -59,7 +59,7 @@ clusters create "${CLUSTER_NAME}" \
 --no-enable-autorepair
 ```
 
-### To setup node pool in GKE cluster
+### Setup node pool in GKE cluster
 ```bash
 gcloud beta container \
 node-pools create "scylla-pool" \
