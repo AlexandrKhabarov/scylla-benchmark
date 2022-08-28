@@ -1,0 +1,54 @@
+# Namespace where the Scylla Cluster will be created
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scylla
+
+---
+
+# Scylla Cluster
+apiVersion: scylla.scylladb.com/v1
+kind: ScyllaCluster
+metadata:
+  name: scylla-cluster
+  namespace: scylla
+spec:
+  version: 4.6.3
+  agentVersion: 3.0.0
+  cpuset: true
+  automaticOrphanedNodeCleanup: true
+  sysctls:
+    - "fs.aio-max-nr=2097152"
+  network:
+    hostNetworking: true
+  datacenter:
+    name: europe-west1
+    racks:
+      - name: europe-west1-b
+        scyllaConfig: "scylla-config"
+        scyllaAgentConfig: "scylla-agent-config"
+        members: 3
+        storage:
+          storageClassName: local-raid-disks
+          capacity: 2995G
+        resources:
+          limits:
+            cpu: 3
+            memory: 20G
+          requests:
+            cpu: 3
+            memory: 20G
+        placement:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                  - key: failure-domain.beta.kubernetes.io/zone
+                    operator: In
+                    values:
+                      - europe-west1-b
+          tolerations:
+            - key: role
+              operator: Equal
+              value: scylla-clusters
+              effect: NoSchedule
