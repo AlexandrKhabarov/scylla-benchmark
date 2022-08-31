@@ -8,12 +8,11 @@ metadata:
 spec:
   containers:
   - name: ycsb-benchmark
-    image: <ycsb_image>
-    command: "/bin/bash"
+    image: "nginx"
     resources:
       limits:
-        cpu: 1
-        memory: 5G
+        cpu: 4
+        memory: 20G
   restartPolicy: Never
   nodeSelector:
 
@@ -42,12 +41,11 @@ metadata:
 spec:
   containers:
   - name: ycsb-benchmark
-    image: <ycsb_image>
-    command: "/bin/bash"
+    image: "nginx"
     resources:
       limits:
-        cpu: 1
-        memory: 5G
+        cpu: 4
+        memory: 20G
   restartPolicy: Never
   nodeSelector:
 
@@ -76,12 +74,11 @@ metadata:
 spec:
   containers:
   - name: ycsb-benchmark
-    image: <ycsb_image>
-    command: "/bin/bash"
+    image: "nginx"
     resources:
       limits:
-        cpu: 1
-        memory: 5G
+        cpu: 4
+        memory: 20G
   restartPolicy: Never
   nodeSelector:
 

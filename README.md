@@ -138,8 +138,9 @@ gcloud container \
 node-pools create "ycsb-benchmark-pool" \
 --cluster "${CLUSTER_NAME}" \
 --node-version "${CLUSTER_VERSION}" \
---machine-type "n1-standard-4" \
+--machine-type "n1-standard-16" \
 --num-nodes "2" \
+--zone europe-west1-b \
 --disk-type "pd-ssd" \
 --disk-size "20" \
 --node-taints role=ycsb-benchmark:NoSchedule \
