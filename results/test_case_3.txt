@@ -1,0 +1,59 @@
+bin/ycsb run scylla -s -P workloads/workloada \
+    -target 1000 -threads 100 -p recordcount=600000000 \
+    -p fieldcount=10 -p fieldlength=100 \
+    -p operationcount=5000000 \
+    -p readallfields=true \
+    -p writeallfields=false \
+    -p requestdistribution=uniform \
+    -p fieldlengthdistribution=constant \
+    -p readproportion=0.5 \
+    -p updateproportion=0.25 \
+    -p insertproportion=0.25 \
+    -p scylla.username=cassandra -p scylla.password=cassandra \
+    -p scylla.hosts=scylla-cluster-client.scylla.svc
+
+[OVERALL], RunTime(ms), 5003095
+[OVERALL], Throughput(ops/sec), 999.38138292397
+[TOTAL_GCS_G1_Young_Generation], Count, 210
+[TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 454
+[TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.009074382956949649
+[TOTAL_GCS_G1_Old_Generation], Count, 0
+[TOTAL_GC_TIME_G1_Old_Generation], Time(ms), 0
+[TOTAL_GC_TIME_%_G1_Old_Generation], Time(%), 0.0
+[TOTAL_GCs], Count, 210
+[TOTAL_GC_TIME], Time(ms), 454
+[TOTAL_GC_TIME_%], Time(%), 0.009074382956949649
+[READ], Operations, 1316867
+[READ], AverageLatency(us), 1317.7408705662758
+[READ], MinLatency(us), 415
+[READ], MaxLatency(us), 38623
+[READ], 95thPercentileLatency(us), 2271
+[READ], 99thPercentileLatency(us), 3517
+[READ], Return=OK, 1316867
+[READ], Return=NOT_FOUND, 1183089
+[CLEANUP], Operations, 100
+[CLEANUP], AverageLatency(us), 22170.96
+[CLEANUP], MinLatency(us), 1
+[CLEANUP], MaxLatency(us), 2217983
+[CLEANUP], 95thPercentileLatency(us), 2
+[CLEANUP], 99thPercentileLatency(us), 16
+[UPDATE], Operations, 1249629
+[UPDATE], AverageLatency(us), 701.2374512755385
+[UPDATE], MinLatency(us), 326
+[UPDATE], MaxLatency(us), 37567
+[UPDATE], 95thPercentileLatency(us), 1194
+[UPDATE], 99thPercentileLatency(us), 2038
+[UPDATE], Return=OK, 1249629
+[INSERT], Operations, 1250415
+[INSERT], AverageLatency(us), 742.8514701119228
+[INSERT], MinLatency(us), 356
+[INSERT], MaxLatency(us), 37311
+[INSERT], 95thPercentileLatency(us), 1237
+[INSERT], 99thPercentileLatency(us), 2063
+[INSERT], Return=OK, 1250415
+[READ-FAILED], Operations, 1183089
+[READ-FAILED], AverageLatency(us), 769.1324600262533
+[READ-FAILED], MinLatency(us), 329
+[READ-FAILED], MaxLatency(us), 38687
+[READ-FAILED], 95thPercentileLatency(us), 1487
+[READ-FAILED], 99thPercentileLatency(us), 2469
