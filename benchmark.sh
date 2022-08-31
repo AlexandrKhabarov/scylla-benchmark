@@ -33,7 +33,7 @@ bin/ycsb load scylla -s -P workloads/workloada \
 
 
 bin/ycsb run scylla -s -P workloads/workloada \
-    -target 1000 -threads 100 -p recordcount=120000000 \
+    -target 1000 -threads 100 -p recordcount=600000000 \
     -p fieldcount=10 -p fieldlength=100 \
     -p operationcount=5000000 \
     -p readallfields=true \

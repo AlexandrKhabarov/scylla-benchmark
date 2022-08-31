@@ -1,0 +1,52 @@
+bin/ycsb run scylla -s -P workloads/workloada \
+    -target 1000 -threads 100 -p recordcount=600000000 \
+    -p fieldcount=10 -p fieldlength=100 \
+    -p operationcount=5000000 \
+    -p readallfields=true \
+    -p writeallfields=false \
+    -p requestdistribution=zipfian \
+    -p fieldlengthdistribution=constant \
+    -p readproportion=0.95 \
+    -p updateproportion=0.05 \
+    -p insertproportion=0 \
+    -p scylla.username=cassandra -p scylla.password=cassandra \
+    -p scylla.hosts=scylla-cluster-client.scylla.svc
+
+[OVERALL], RunTime(ms), 5003151
+[OVERALL], Throughput(ops/sec), 999.3701969019124
+[TOTAL_GCS_G1_Young_Generation], Count, 187
+[TOTAL_GC_TIME_G1_Young_Generation], Time(ms), 443
+[TOTAL_GC_TIME_%_G1_Young_Generation], Time(%), 0.008854419944550943
+[TOTAL_GCS_G1_Old_Generation], Count, 0
+[TOTAL_GC_TIME_G1_Old_Generation], Time(ms), 0
+[TOTAL_GC_TIME_%_G1_Old_Generation], Time(%), 0.0
+[TOTAL_GCs], Count, 187
+[TOTAL_GC_TIME], Time(ms), 443
+[TOTAL_GC_TIME_%], Time(%), 0.008854419944550943
+[READ], Operations, 3435907
+[READ], AverageLatency(us), 1994.8211607590076
+[READ], MinLatency(us), 381
+[READ], MaxLatency(us), 441087
+[READ], 95thPercentileLatency(us), 5919
+[READ], 99thPercentileLatency(us), 7203
+[READ], Return=OK, 3435907
+[READ], Return=NOT_FOUND, 1314810
+[CLEANUP], Operations, 100
+[CLEANUP], AverageLatency(us), 22192.14
+[CLEANUP], MinLatency(us), 1
+[CLEANUP], MaxLatency(us), 2220031
+[CLEANUP], 95thPercentileLatency(us), 3
+[CLEANUP], 99thPercentileLatency(us), 19
+[READ-FAILED], Operations, 1314810
+[READ-FAILED], AverageLatency(us), 1764.9945581490863
+[READ-FAILED], MinLatency(us), 359
+[READ-FAILED], MaxLatency(us), 423935
+[READ-FAILED], 95thPercentileLatency(us), 4331
+[READ-FAILED], 99thPercentileLatency(us), 6095
+[UPDATE], Operations, 249283
+[UPDATE], AverageLatency(us), 1579.744258533474
+[UPDATE], MinLatency(us), 392
+[UPDATE], MaxLatency(us), 331519
+[UPDATE], 95thPercentileLatency(us), 4539
+[UPDATE], 99thPercentileLatency(us), 5231
+[UPDATE], Return=OK, 249283

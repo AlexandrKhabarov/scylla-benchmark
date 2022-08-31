@@ -1,0 +1,13 @@
+bin/ycsb run scylla -s -P workloads/workloada \
+    -target 1000 -threads 100 -p recordcount=600000000 \
+    -p fieldcount=10 -p fieldlength=100 \
+    -p operationcount=5000000 \
+    -p readallfields=true \
+    -p writeallfields=false \
+    -p requestdistribution=zipfian \
+    -p fieldlengthdistribution=constant \
+    -p readproportion=0.5 \
+    -p updateproportion=0.25 \
+    -p insertproportion=0.25 \
+    -p scylla.username=cassandra -p scylla.password=cassandra \
+    -p scylla.hosts=scylla-cluster-client.scylla.svc
