@@ -1,8 +1,24 @@
 bin/ycsb load scylla -s -P workloads/workloada \
     -threads 300 -p recordcount=600000000 \
     -p readproportion=0 -p updateproportion=0 \
+    -p fieldcount=11 -p fieldlength=100 \
+    -p insertstart=0 -p insertcount=200000000 \
+    -p cassandra.username=cassandra -p cassandra.password=cassandra \
+    -p scylla.hosts=scylla-cluster-client.scylla.svc
+
+bin/ycsb load scylla -s -P workloads/workloada \
+    -threads 300 -p recordcount=600000000 \
+    -p readproportion=0 -p updateproportion=0 \
     -p fieldcount=10 -p fieldlength=100 \
-    -p insertstart=0 -p insertcount=600000000 \
+    -p insertstart=200000000 -p insertcount=200000000 \
+    -p cassandra.username=cassandra -p cassandra.password=cassandra \
+    -p scylla.hosts=scylla-cluster-client.scylla.svc
+
+bin/ycsb load scylla -s -P workloads/workloada \
+    -threads 300 -p recordcount=600000000 \
+    -p readproportion=0 -p updateproportion=0 \
+    -p fieldcount=10 -p fieldlength=100 \
+    -p insertstart=400000000 -p insertcount=200000000 \
     -p cassandra.username=cassandra -p cassandra.password=cassandra \
     -p scylla.hosts=scylla-cluster-client.scylla.svc
 
