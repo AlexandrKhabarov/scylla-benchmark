@@ -1,0 +1,53 @@
+kubectl exec -it ycsb-benchmark-0 -- bash -c /YCSB/bin/ycsb run scylla -s -P workloads/workloada \
+    -target 6000 -threads 600 -p recordcount=18000000 \
+    -p insertstart=0 -p insertcount=6000000 \
+    -p fieldcount=250 -p fieldlength=150 \
+    -p operationcount=5000000 \
+    -p readallfields=true \
+    -p writeallfields=true \
+    -p requestdistribution=uniform \
+    -p fieldlengthdistribution=constant \
+    -p readproportion=0.95 \
+    -p updateproportion=0.05 \
+    -p insertproportion=0 \
+    -p scylla.username=cassandra -p scylla.password=cassandra \
+    -p scylla.hosts=scylla-cluster-client.scylla.svc
+    -p requestdistribution=zipfian
+    -p hotspotdatafraction=0.2
+    -p hotspotopnfraction=0.8
+
+kubectl exec -it ycsb-benchmark-1 -- bash -c /YCSB/bin/ycsb run scylla -s -P workloads/workloada \
+    -target 6000 -threads 600 -p recordcount=18000000 \
+    -p insertstart=6000000 -p insertcount=6000000 \
+    -p fieldcount=250 -p fieldlength=150 \
+    -p operationcount=5000000 \
+    -p readallfields=true \
+    -p writeallfields=true \
+    -p requestdistribution=uniform \
+    -p fieldlengthdistribution=constant \
+    -p readproportion=0.95 \
+    -p updateproportion=0.05 \
+    -p insertproportion=0 \
+    -p scylla.username=cassandra -p scylla.password=cassandra \
+    -p scylla.hosts=scylla-cluster-client.scylla.svc
+    -p requestdistribution=zipfian
+    -p hotspotdatafraction=0.2
+    -p hotspotopnfraction=0.8
+
+kubectl exec -it ycsb-benchmark-2 -- bash -c /YCSB/bin/ycsb run scylla -s -P workloads/workloada \
+    -target 6000 -threads 600 -p recordcount=18000000 \
+    -p insertstart=12000000 -p insertcount=6000000 \
+    -p fieldcount=250 -p fieldlength=150 \
+    -p operationcount=5000000 \
+    -p readallfields=true \
+    -p writeallfields=true \
+    -p requestdistribution=uniform \
+    -p fieldlengthdistribution=constant \
+    -p readproportion=0.95 \
+    -p updateproportion=0.05 \
+    -p insertproportion=0 \
+    -p scylla.username=cassandra -p scylla.password=cassandra \
+    -p scylla.hosts=scylla-cluster-client.scylla.svc
+    -p requestdistribution=zipfian
+    -p hotspotdatafraction=0.2
+    -p hotspotopnfraction=0.8
