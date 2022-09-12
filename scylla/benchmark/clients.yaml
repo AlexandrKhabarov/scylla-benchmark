@@ -11,8 +11,8 @@ spec:
     image: "nginx"
     resources:
       limits:
-        cpu: 4
-        memory: 20G
+        cpu: 25
+        memory: 90G
   restartPolicy: Never
   nodeSelector:
 
@@ -44,8 +44,8 @@ spec:
     image: "nginx"
     resources:
       limits:
-        cpu: 4
-        memory: 20G
+        cpu: 25
+        memory: 90G
   restartPolicy: Never
   nodeSelector:
 
@@ -77,8 +77,8 @@ spec:
     image: "nginx"
     resources:
       limits:
-        cpu: 4
-        memory: 20G
+        cpu: 25
+        memory: 90G
   restartPolicy: Never
   nodeSelector:
 
